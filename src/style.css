@@ -1,0 +1,144 @@
+.app {
+  padding: 30px 30px 15px 30px;
+  display: block;
+  margin: 20px auto;
+  background-color: #faeaeb;
+  max-width: 900px;
+  border-radius: 20px;
+  border: 2px #19495e solid;
+}
+
+h1 {
+  font-size: 44px;
+  color: #19495e;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+h2 {
+  font-size: 28px;
+  color: #19495e;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
+  margin: 6px auto;
+}
+
+h3 {
+  color: #19495e;
+  font-size: 18px;
+  opacity: 0.9;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: normal;
+  margin: 3px auto;
+}
+
+#description {
+  text-transform: capitalize;
+}
+
+.card,
+#change-city-form,
+footer {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #276c8d;
+  font-size: 16px;
+}
+
+#change-city-field:focus {
+  border: 1px solid #0f74a71f;
+  box-shadow: 0 0 0 0.25rem #0f74a759;
+}
+
+input.change-city,
+button.locate {
+  width: 100%;
+  background-color: #276c8d;
+  border: #276c8d;
+}
+
+input.change-city:hover,
+button.locate:hover {
+  background-color: #0f74a7;
+}
+
+.btn,
+.btn.active,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  background-color: #276c8d;
+}
+
+.col-7 {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.today {
+  margin: 15px 0 0 0;
+}
+
+.additional-data {
+  margin: 0 0 10px 0;
+}
+
+img.today {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+img.sunrise {
+  width: 30px;
+  height: auto;
+}
+
+div.forecast {
+  margin: 0 0 10px 0;
+}
+
+.card {
+  background-color: #faeaeb;
+  border: none;
+  transition: all 200ms ease-in-out;
+}
+
+.card:hover {
+  background-color: #0f74a7;
+  color: #faeaeb;
+}
+
+div.card-header,
+div.card-body {
+  text-align: center;
+  background: none;
+  border: none;
+}
+
+img.forecast {
+  height: 50px;
+  width: auto;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+img.temp-forecast {
+  width: 10px;
+  height: auto;
+}
+
+footer {
+  font-size: small;
+  text-align: center;
+  padding-top: 7px;
+}
+
+a {
+  text-decoration: none;
+  color: #0f74a7;
+}
+
+a.current-unit {
+  color: #19495e;
+}
