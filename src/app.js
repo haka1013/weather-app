@@ -1,3 +1,33 @@
+// Format the date
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp);
+  let weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = weekdays[date.getDay()];
+  return `${day}`;
+}
+
+function formatTime(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  return `${hours}:${minutes}`;
+}
+
 //Function to display the temperature
 
 function displayWeather(response) {
@@ -12,6 +42,16 @@ function displayWeather(response) {
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#change-city-field").value = null;
+  document.querySelector("#date").innerHTML =
+    formatDay(response.data.dt * 1000) +
+    ", " +
+    formatTime(response.data.dt * 1000);
+  document.querySelector("#sunrise").innerHTML = formatTime(
+    response.data.sys.sunrise * 1000
+  );
+  document.querySelector("#sunset").innerHTML = formatTime(
+    response.data.sys.sunset * 1000
+  );
 }
 
 //Search Engine
@@ -65,38 +105,6 @@ function searchLocation(position) {
 document
   .querySelector("button.locate")
   .addEventListener("click", getCurrentLocation);
-
-//Display current time
-
-let now = new Date();
-
-//Time in UTC
-
-let currentHours = now.getUTCHours();
-let currentMinutes = now.getUTCMinutes();
-let time = document.querySelector("#time");
-
-if (currentMinutes < 10) {
-  time.innerHTML = `${currentHours}:0${currentMinutes}`;
-} else {
-  time.innerHTML = `${currentHours}:${currentMinutes}`;
-}
-
-//Day in UTC
-
-let day = document.querySelector("#day");
-let currentDay = now.getUTCDay();
-let weekDays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-day.innerHTML = weekDays[currentDay];
 
 //Conversion to Fahrenheit (prior week)
 
