@@ -99,7 +99,7 @@ button.locate:hover {
   margin: 15px 0 15px 0;
 }
 
-img.today {
+#icon-today {
   max-width: 200px;
   height: auto;
   display: block;

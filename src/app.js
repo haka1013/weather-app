@@ -52,6 +52,13 @@ function displayWeather(response) {
   document.querySelector("#sunset").innerHTML = formatTime(
     response.data.sys.sunset * 1000
   );
+  document
+    .querySelector("#icon-today")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  console.log(response.data.weather[0].icon);
 }
 
 //Search Engine
