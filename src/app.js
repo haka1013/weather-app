@@ -1,3 +1,7 @@
+// Global variables
+
+let celsiusTemperature = null;
+
 // Format the date
 
 function formatDay(timestamp) {
@@ -55,7 +59,7 @@ function displayWeather(response) {
   document
     .querySelector("#icon-today")
     .setAttribute("src", `images/${response.data.weather[0].icon}.png`);
-  console.log(response.data.weather[0].id);
+  celsiusTemperature = Math.round(response.data.main.temp);
 }
 
 //Search Engine
@@ -110,28 +114,26 @@ document
   .querySelector("button.locate")
   .addEventListener("click", getCurrentLocation);
 
-//Conversion to Fahrenheit (prior week)
+//Unit conversion
 
 function changeToFahrenheit(event) {
   event.preventDefault();
-  let temp = document.querySelector("#temp");
-  temp.innerHTML = 46;
-  let fahrenheit = document.querySelector("#fahrenheit-link");
-  fahrenheit.classList.add("current-unit");
-  celsius.classList.remove("current-unit");
+  document.querySelector("#temp").innerHTML = Math.round(
+    celsiusTemperature * 1.8 + 32
+  );
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
 }
 
 function changeToCelsius(event) {
   event.preventDefault();
-  let temp = document.querySelector("#temp");
-  temp.innerHTML = 8;
-  let celsius = document.querySelector("#celsius-link");
-  celsius.classList.add("current-unit");
-  fahrenheit.classList.remove("current-unit");
+  document.querySelector("#temp").innerHTML = Math.round(celsiusTemperature);
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
 }
 
-let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", changeToCelsius);
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", changeToFahrenheit);
 
-let fahrenheit = document.querySelector("#fahrenheit-link");
-fahrenheit.addEventListener("click", changeToFahrenheit);
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", changeToCelsius);

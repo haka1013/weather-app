@@ -156,7 +156,15 @@ a {
   color: #0f74a7;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 a.active {
   color: #19495e;
   cursor: default;
+}
+
+a.active:hover {
+  text-decoration: none;
 }
