@@ -1,36 +1,46 @@
 .app {
-  padding: 30px 30px 15px 30px;
+  padding: 30px 15px 15px 15px;
   display: block;
   margin: 20px auto;
   background-color: #faeaeb;
-  max-width: 900px;
+  max-width: 800px;
   border-radius: 20px;
   border: 2px #19495e solid;
 }
 
 h1 {
-  font-size: 44px;
+  font-size: 36px;
   color: #19495e;
   font-family: "Playfair Display", serif;
   font-weight: bold;
   text-transform: capitalize;
+  margin: 0 auto;
 }
 
-h2 {
-  font-size: 28px;
+#temp {
   color: #19495e;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
-  margin: 6px auto;
+  margin: 0 auto 15px auto;
+  font-size: 45px;
+  line-height: 1;
+}
+
+.unit {
+  color: #19495e;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 14px;
+  position: relative;
+  top: -12px;
 }
 
 h3 {
   color: #19495e;
-  font-size: 18px;
+  font-size: 16px;
   opacity: 0.9;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: normal;
-  margin: 3px auto;
+  margin: 4px auto;
 }
 
 #description {
@@ -42,7 +52,12 @@ h3 {
 footer {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #276c8d;
-  font-size: 16px;
+  font-size: 14px;
+  margin: 0;
+}
+
+#change-city-field {
+  font-size: 14px;
 }
 
 #change-city-field:focus {
@@ -57,6 +72,10 @@ button.locate {
   border: #276c8d;
 }
 
+button.locate {
+  max-width: 50px;
+}
+
 input.change-city:hover,
 button.locate:hover {
   background-color: #0f74a7;
@@ -67,20 +86,17 @@ button.locate:hover {
 .btn:first-child:active,
 :not(.btn-check) + .btn:active {
   background-color: #276c8d;
+  font-size: 14px;
 }
 
-.col-7 {
+.img-container {
   display: flex;
   align-items: center;
   vertical-align: middle;
 }
 
 .today {
-  margin: 15px 0 0 0;
-}
-
-.additional-data {
-  margin: 0 0 10px 0;
+  margin: 15px 0 15px 0;
 }
 
 img.today {
@@ -97,6 +113,7 @@ img.sunrise {
 
 div.forecast {
   margin: 0 0 10px 0;
+  padding: 4px;
 }
 
 .card {
@@ -139,6 +156,7 @@ a {
   color: #0f74a7;
 }
 
-a.current-unit {
+a.active {
   color: #19495e;
+  cursor: default;
 }

@@ -33,7 +33,7 @@
     <div class="app">
       <div class="container">
         <form class="row" id="change-city-form">
-          <div class="col-9">
+          <div class="col-8">
             <input
               type="search"
               class="form-control"
@@ -50,7 +50,7 @@
               value="Search"
             />
           </div>
-          <div class="col-1">
+          <div class="col-2">
             <button class="btn btn-primary locate">
               <i class="fa-solid fa-location-dot"></i>
             </button>
@@ -58,14 +58,21 @@
         </form>
 
         <div class="row today">
-          <div class="col-5">
+          <div class="col-6">
             <h1 id="city">Newquay</h1>
             <h2>
               <span id="temp"></span>
-              <a href="#" class="current-unit" id="celsius-link">°C</a> |
-              <a href="#" id="fahrenheit-link">°F</a>
+              <span class="unit"
+                ><a href="#" class="active" id="celsius-link">°C</a> |
+                <a href="#" id="fahrenheit-link">°F</a></span
+              >
             </h2>
             <h3 id="description"></h3>
+            <h3>
+              Wind:
+              <span id="wind"></span> m/s | Humidity:
+              <span id="humidity"></span>%
+            </h3>
             <h3><span id="day"></span>, <span id="time"></span></h3>
             <h3>
               08:16
@@ -73,19 +80,13 @@
               16:41
             </h3>
           </div>
-          <div class="col-7">
+          <div class="col-6 img-container">
             <img class="today" src="images/cloud.png" alt="cloud" />
           </div>
         </div>
-        <div class="row additional-data">
-          <h3>
-            Precipitation: <span id="precipitation"></span>% | Wind:
-            <span id="wind"></span> m/s | Humidity: <span id="humidity"></span>%
-          </h3>
-        </div>
 
         <div class="row">
-          <div class="col-lg col-md col-sm col-xs-12 forecast">
+          <div class="col forecast">
             <div class="card">
               <div class="card-header">Tomorrow</div>
               <div class="card-body">
@@ -109,7 +110,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg col-md col-sm col-xs-12 forecast">
+          <div class="col forecast">
             <div class="card">
               <div class="card-header">Tuesday</div>
               <div class="card-body">
@@ -129,7 +130,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg col-md col-sm col-xs-12 forecast">
+          <div class="col forecast">
             <div class="card">
               <div class="card-header">Wednesday</div>
               <div class="card-body">
@@ -149,7 +150,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg col-md col-sm col-xs-12 forecast">
+          <div class="col forecast">
             <div class="card">
               <div class="card-header">Thursday</div>
               <div class="card-body">
@@ -169,7 +170,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg col-md col-sm col-xs-12 forecast">
+          <div class="col forecast">
             <div class="card">
               <div class="card-header">Friday</div>
               <div class="card-body">
