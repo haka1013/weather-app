@@ -54,11 +54,8 @@ function displayWeather(response) {
   );
   document
     .querySelector("#icon-today")
-    .setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );
-  console.log(response.data.weather[0].icon);
+    .setAttribute("src", `images/${response.data.weather[0].icon}.png`);
+  console.log(response.data.weather[0].id);
 }
 
 //Search Engine
