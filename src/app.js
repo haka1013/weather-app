@@ -1,6 +1,7 @@
 // Global variables
 
 let celsiusTemperature = null;
+let feelsLikeCelsius = null;
 
 // Format the date
 
@@ -35,41 +36,45 @@ function formatTime(timestamp) {
 //Function to display the temperature
 
 function displayWeather(response) {
-  document.querySelector("#city").innerHTML = response.data.name;
+  console.log(response.data);
+  document.querySelector("#city").innerHTML = response.data.city;
   document.querySelector("#temp").innerHTML = Math.round(
-    response.data.main.temp
+    response.data.temperature.current
+  );
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.temperature.feels_like
   );
   document.querySelector("#description").innerHTML =
-    response.data.weather[0].description;
+    response.data.condition.description;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#humidity").innerHTML =
+    response.data.temperature.humidity;
   document.querySelector("#change-city-field").value = null;
   document.querySelector("#date").innerHTML =
-    formatDay(response.data.dt * 1000) +
+    formatDay(response.data.time * 1000) +
     ", " +
-    formatTime(response.data.dt * 1000);
-  document.querySelector("#sunrise").innerHTML = formatTime(
-    response.data.sys.sunrise * 1000
-  );
-  document.querySelector("#sunset").innerHTML = formatTime(
-    response.data.sys.sunset * 1000
-  );
+    formatTime(response.data.time * 1000);
+
   document
     .querySelector("#icon-today")
-    .setAttribute("src", `images/${response.data.weather[0].icon}.png`);
-  celsiusTemperature = Math.round(response.data.main.temp);
+    .setAttribute("src", `images/${response.data.condition.icon}.png`);
+  celsiusTemperature = Math.round(response.data.temperature.current);
+  feelsLikeCelsius = Math.round(response.data.temperature.feels_like);
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  document.querySelector("#current-unit").innerHTML = "C";
 }
 
 //Search Engine
 
 function searchCity(city) {
-  let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
-  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
+  let apiUrl = "https://api.shecodes.io/weather/v1/current?";
+  let apiKey = "f552o2btc343e2d6edd4e830ffa6cab0";
   let unit = "metric";
   axios
-    .get(`${apiUrl}q=${city}&appid=${apiKey}&units=${unit}`)
+    .get(`${apiUrl}query=${city}&key=${apiKey}&units=${unit}`)
     .then(displayWeather);
 }
 
@@ -100,12 +105,12 @@ function getCurrentLocation(event) {
 function searchLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
-  let apiKey = "f8e6a9e3d6fde87cb38868da460b1371";
+  let apiUrl = "https://api.shecodes.io/weather/v1/current?";
+  let apiKey = "f552o2btc343e2d6edd4e830ffa6cab0";
   let unit = "metric";
   axios
     .get(
-      `${apiUrl}lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`
+      `${apiUrl}lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${unit}`
     )
     .then(displayWeather);
 }
@@ -123,6 +128,10 @@ function changeToFahrenheit(event) {
   );
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    feelsLikeCelsius * 1.8 + 32
+  );
+  document.querySelector("#current-unit").innerHTML = "F";
 }
 
 function changeToCelsius(event) {
@@ -130,6 +139,9 @@ function changeToCelsius(event) {
   document.querySelector("#temp").innerHTML = Math.round(celsiusTemperature);
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
+  document.querySelector("#feels-like").innerHTML =
+    Math.round(feelsLikeCelsius);
+  document.querySelector("#current-unit").innerHTML = "C";
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
