@@ -2,6 +2,7 @@
 
 let celsiusTemperature = null;
 let feelsLikeCelsius = null;
+let windDegree = null;
 
 // Format the date
 
@@ -33,10 +34,51 @@ function formatTime(timestamp) {
   return `${hours}:${minutes}`;
 }
 
-//Function to display the temperature
+//Calculate wind direction
+
+function convertWind(windDegree) {
+  let windDirection = document.querySelector("#wind-direction");
+  if (windDegree === 0) {
+    windDirection.innerHTML = "north";
+  } else {
+    if (windDegree <= 45) {
+      windDirection.innerHTML = "north-east";
+    } else {
+      if (windDegree <= 90) {
+        windDirection.innerHTML = "east";
+      } else {
+        if (windDegree <= 135) {
+          windDirection.innerHTML = "south-east";
+        } else {
+          if (windDegree <= 180) {
+            windDirection.innerHTML = "south";
+          } else {
+            if (windDegree <= 225) {
+              windDirection.innerHTML = "south-west";
+            } else {
+              if (windDegree <= 270) {
+                windDirection.innerHTML = "west";
+              } else {
+                if (windDegree <= 315) {
+                  windDirection.innerHTML = "north-west";
+                } else {
+                  if (windDegree <= 360) {
+                    windDirection.innerHTML = "north";
+                  } else {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Function to display the weather
 
 function displayWeather(response) {
-  console.log(response.data);
   document.querySelector("#city").innerHTML = response.data.city;
   document.querySelector("#temp").innerHTML = Math.round(
     response.data.temperature.current
@@ -65,6 +107,9 @@ function displayWeather(response) {
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   document.querySelector("#current-unit").innerHTML = "C";
+
+  windDegree = Math.round(response.data.wind.degree);
+  convertWind(windDegree);
 }
 
 //Search Engine
