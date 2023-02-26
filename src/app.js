@@ -102,6 +102,7 @@ function displayWeather(response) {
   document
     .querySelector("#icon-today")
     .setAttribute("src", `images/${response.data.condition.icon}.png`);
+
   celsiusTemperature = Math.round(response.data.temperature.current);
   feelsLikeCelsius = Math.round(response.data.temperature.feels_like);
   fahrenheitLink.classList.remove("active");

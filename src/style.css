@@ -100,8 +100,9 @@ button.locate:hover {
 }
 
 #icon-today {
+  max-height: 180px;
+  width: auto;
   max-width: 200px;
-  height: auto;
   display: block;
   margin: 0 auto;
 }
