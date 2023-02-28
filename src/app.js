@@ -113,6 +113,46 @@ function displayWeather(response) {
   convertWind(windDegree);
 }
 
+//Function to display the forecast
+
+function displayForecast() {
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tomorrow", "Friday", "Saturday", "Sunday", "Monday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `     <div class="col forecast">
+            <div class="card">
+              <div class="card-header">${day}</div>
+              <div class="card-body">
+                <img
+                  class="forecast"
+                  src="images/few-clouds-day.png"
+                  alt="sun & cloud"
+                />
+                <img
+                  class="temp-forecast"
+                  src="images/temp_high.png"
+                  alt="max temperature"
+                />
+                10°C
+                <img
+                  class="temp-forecast"
+                  src="images/temp_low.png"
+                  alt="min temperature"
+                />
+                5°C
+              </div>
+            </div>
+          </div>
+        `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  document.querySelector("#forecast").innerHTML = forecastHTML;
+}
+
 //Search Engine
 
 function searchCity(city) {
@@ -140,6 +180,7 @@ searchForm.addEventListener("submit", handleSubmit);
 //Display weather when loading
 
 searchCity("Newquay");
+displayForecast();
 
 //Current Positon button
 
