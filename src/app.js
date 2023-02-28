@@ -121,7 +121,7 @@ function displayForecast() {
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
-      `     <div class="col forecast">
+      `     <div class="col">
             <div class="card">
               <div class="card-header">${day}</div>
               <div class="card-body">

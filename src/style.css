@@ -112,11 +112,6 @@ img.sunrise {
   height: auto;
 }
 
-div.forecast {
-  margin: 0;
-  padding: 4px;
-}
-
 .card {
   background-color: #faeaeb;
   border: none;
