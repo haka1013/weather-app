@@ -111,11 +111,24 @@ function displayWeather(response) {
 
   windDegree = Math.round(response.data.wind.degree);
   convertWind(windDegree);
+  getForecast(response.data.city);
+}
+
+//Function to get the forecast API
+function getForecast(city) {
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?`;
+  let apiKey = `f552o2btc343e2d6edd4e830ffa6cab0`;
+  let unit = "metric";
+  axios
+    .get(`${apiUrl}query=${city}&key=${apiKey}&units=${unit}`)
+    .then(displayForecast);
 }
 
 //Function to display the forecast
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
+
   let forecastHTML = `<div class="row">`;
   let days = ["Tomorrow", "Friday", "Saturday", "Sunday", "Monday"];
   days.forEach(function (day) {
@@ -180,7 +193,6 @@ searchForm.addEventListener("submit", handleSubmit);
 //Display weather when loading
 
 searchCity("Newquay");
-displayForecast();
 
 //Current Positon button
 
