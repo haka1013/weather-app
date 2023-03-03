@@ -1,7 +1,5 @@
 // Global variables
 
-let celsiusTemperature = null;
-let feelsLikeCelsius = null;
 let windDegree = null;
 
 // Format the date
@@ -101,10 +99,6 @@ function displayWeather(response) {
     .querySelector("#icon-today")
     .setAttribute("src", `images/${response.data.condition.icon}.png`);
 
-  celsiusTemperature = Math.round(response.data.temperature.current);
-  feelsLikeCelsius = Math.round(response.data.temperature.feels_like);
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
   document.querySelector("#current-unit").innerHTML = "C";
 
   windDegree = Math.round(response.data.wind.degree);
@@ -126,8 +120,6 @@ function getForecast(city) {
 //Function to display the forecast
 
 function displayForecast(response) {
-  console.log(response.data.daily);
-
   let forecast = response.data.daily;
   let forecastHTML = `<div class="row">`;
 
@@ -219,34 +211,3 @@ function searchLocation(position) {
 document
   .querySelector("button.locate")
   .addEventListener("click", getCurrentLocation);
-
-//Unit conversion
-
-function changeToFahrenheit(event) {
-  event.preventDefault();
-  document.querySelector("#temp").innerHTML = Math.round(
-    celsiusTemperature * 1.8 + 32
-  );
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  document.querySelector("#feels-like").innerHTML = Math.round(
-    feelsLikeCelsius * 1.8 + 32
-  );
-  document.querySelector("#current-unit").innerHTML = "F";
-}
-
-function changeToCelsius(event) {
-  event.preventDefault();
-  document.querySelector("#temp").innerHTML = Math.round(celsiusTemperature);
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-  document.querySelector("#feels-like").innerHTML =
-    Math.round(feelsLikeCelsius);
-  document.querySelector("#current-unit").innerHTML = "C";
-}
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", changeToFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", changeToCelsius);
