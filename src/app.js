@@ -141,13 +141,13 @@ function displayForecast(response) {
                   src="images/temp_high.png"
                   alt="max temperature"
                 />
-                ${Math.round(forecastDay.temperature.maximum)}°C
+                ${Math.round(forecastDay.temperature.maximum)} °C
                 <img
                   class="temp-forecast"
                   src="images/temp_low.png"
                   alt="min temperature"
                 />
-                ${Math.round(forecastDay.temperature.minimum)}°C
+                ${Math.round(forecastDay.temperature.minimum)} °C
               </div>
             </div>
           </div>
