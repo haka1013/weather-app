@@ -7,7 +7,7 @@ let windDegree = null;
 // Format the date
 
 function formatDay(timestamp) {
-  let date = new Date(timestamp);
+  let date = new Date(timestamp * 1000);
   let weekdays = [
     "Sunday",
     "Monday",
@@ -17,12 +17,12 @@ function formatDay(timestamp) {
     "Friday",
     "Saturday",
   ];
-  let day = weekdays[date.getDay()];
-  return `${day}`;
+  let day = date.getDay();
+  return weekdays[day];
 }
 
 function formatTime(timestamp) {
-  let date = new Date(timestamp);
+  let date = new Date(timestamp * 1000);
   let hours = date.getHours();
   let minutes = date.getMinutes();
   if (minutes < 10) {
@@ -95,9 +95,7 @@ function displayWeather(response) {
     response.data.temperature.humidity;
   document.querySelector("#change-city-field").value = null;
   document.querySelector("#date").innerHTML =
-    formatDay(response.data.time * 1000) +
-    ", " +
-    formatTime(response.data.time * 1000);
+    formatDay(response.data.time) + ", " + formatTime(response.data.time);
 
   document
     .querySelector("#icon-today")
@@ -114,7 +112,8 @@ function displayWeather(response) {
   getForecast(response.data.city);
 }
 
-//Function to get the forecast API
+//Function to call the forecast api
+
 function getForecast(city) {
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?`;
   let apiKey = `f552o2btc343e2d6edd4e830ffa6cab0`;
@@ -129,18 +128,20 @@ function getForecast(city) {
 function displayForecast(response) {
   console.log(response.data.daily);
 
+  let forecast = response.data.daily;
   let forecastHTML = `<div class="row">`;
-  let days = ["Tomorrow", "Friday", "Saturday", "Sunday", "Monday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `     <div class="col">
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `     <div class="col">
             <div class="card">
-              <div class="card-header">${day}</div>
+              <div class="card-header">${formatDay(forecastDay.time)}</div>
               <div class="card-body">
                 <img
                   class="forecast"
-                  src="images/few-clouds-day.png"
+                  src="images/${forecastDay.condition.icon}.png"
                   alt="sun & cloud"
                 />
                 <img
@@ -148,17 +149,18 @@ function displayForecast(response) {
                   src="images/temp_high.png"
                   alt="max temperature"
                 />
-                10°C
+                ${Math.round(forecastDay.temperature.maximum)}°C
                 <img
                   class="temp-forecast"
                   src="images/temp_low.png"
                   alt="min temperature"
                 />
-                5°C
+                ${Math.round(forecastDay.temperature.minimum)}°C
               </div>
             </div>
           </div>
         `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
