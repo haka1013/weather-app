@@ -3,7 +3,7 @@
   display: block;
   margin: 20px auto;
   background-color: #faeaeb;
-  max-width: 800px;
+  max-width: 850px;
   border-radius: 20px;
   border: 2px #19495e solid;
 }
@@ -131,8 +131,8 @@ div.card-body {
 }
 
 img.forecast {
-  height: 50px;
   width: auto;
+  height: 50px;
   display: block;
   margin: 0 auto 10px auto;
 }
